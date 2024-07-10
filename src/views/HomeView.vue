@@ -9,30 +9,32 @@
         :key="movie.id"
         class="relative p-4 bg-white shadow-md rounded-lg"
       >
-        <img
-          :src="movie.poster_path"
-          alt="Movie Poster"
-          class="w-full h-48 object-cover mb-4 rounded-t-lg"
-        />
-        <span class="absolute top-2 right-2">
-          <font-awesome-icon
-            :icon="['fas', movie.isFavorite ? 'heart' : 'heart']"
-            :class="['cursor-pointer', { 'text-red-500': movie.isFavorite }]"
-            @click="toggleFavorite(movie)"
+        <router-link :to="{ name: 'MovieDetail', params: { id: movie.id } }">
+          <img
+            :src="movie.poster_path"
+            alt="Movie Poster"
+            class="w-full h-48 object-cover mb-4 rounded-t-lg"
           />
-        </span>
-        <h2 class="text-lg font-semibold">{{ movie.title }}</h2>
-        <p class="text-gray-600 line-clamp-3">{{ movie.overview }}</p>
-        <div class="mt-2">
-          <span
-            class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
-            >{{ movie.release_date }}</span
-          >
-          <span
-            class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700"
-            >{{ movie.vote_average }}</span
-          >
-        </div>
+          <span class="absolute top-2 right-2">
+            <font-awesome-icon
+              :icon="['fas', movie.isFavorite ? 'heart' : 'heart']"
+              :class="['cursor-pointer', { 'text-red-500': movie.isFavorite }]"
+              @click="toggleFavorite(movie)"
+            />
+          </span>
+          <h2 class="text-lg font-semibold">{{ movie.title }}</h2>
+          <p class="text-gray-600 line-clamp-3">{{ movie.overview }}</p>
+          <div class="mt-2">
+            <span
+              class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
+              >{{ movie.release_date }}</span
+            >
+            <span
+              class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700"
+              >{{ movie.vote_average }}</span
+            >
+          </div>
+        </router-link>
       </div>
     </div>
   </div>
