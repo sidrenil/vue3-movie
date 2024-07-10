@@ -6,11 +6,15 @@
       </div>
       <div class="col-md-6 order-md-1">
         <div>
-          <h1 class="text-5xl">{{ movie.title }}</h1>
-          <p class="lead">{{ movie.overview }}</p>
+          <h1 class="text-5xl text-yellow-500">{{ movie.title }}</h1>
+          <p class="lead text-yellow-200">{{ movie.overview }}</p>
           <div class="mt-4">
-            <p><strong>Release Date:</strong> {{ movie.release_date }}</p>
-            <p><strong>Vote Average:</strong> {{ movie.vote_average }}</p>
+            <p class="text-yellow-500">
+              <strong>Release Date:</strong> {{ movie.release_date }}
+            </p>
+            <p class="text-yellow-500">
+              <strong>Vote Average:</strong> {{ movie.vote_average }}
+            </p>
           </div>
         </div>
       </div>

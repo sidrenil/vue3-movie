@@ -1,11 +1,19 @@
 <template>
   <div>
     <h1>Ana Sayfa</h1>
+    <div class="mb-4">
+      <input
+        v-model="searchQuery"
+        type="text"
+        placeholder="Film ismi ara"
+        class="p-2 border border-gray-300 rounded-lg w-full"
+      />
+    </div>
     <div
       class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4"
     >
       <div
-        v-for="movie in favoriteMovies"
+        v-for="movie in filteredMovies"
         :key="movie.id"
         class="relative p-4 bg-white shadow-md rounded-lg"
       >
@@ -19,7 +27,7 @@
             <font-awesome-icon
               :icon="['fas', movie.isFavorite ? 'heart' : 'heart']"
               :class="['cursor-pointer', { 'text-red-500': movie.isFavorite }]"
-              @click="toggleFavorite(movie)"
+              @click.stop.prevent="toggleFavorite(movie)"
             />
           </span>
           <h2 class="text-lg font-semibold">{{ movie.title }}</h2>
@@ -41,18 +49,45 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, computed, onMounted } from "vue";
 import axios from "axios";
 
 const favoriteMovies = ref([]);
+const searchQuery = ref("");
+
+const filteredMovies = computed(() => {
+  if (!searchQuery.value) {
+    return favoriteMovies.value;
+  }
+  return favoriteMovies.value.filter((movie) =>
+    movie.title.toLowerCase().includes(searchQuery.value.toLowerCase())
+  );
+});
 
 const toggleFavorite = (movie) => {
   movie.isFavorite = !movie.isFavorite;
+  saveFavoritesToLocalStorage();
   if (movie.isFavorite) {
     console.log(`${movie.title} favorilere eklendi.`);
   } else {
-    console.log(`${movie.title} favorilerden çıkardı.`);
+    console.log(`${movie.title} favorilerden çıkarıldı.`);
   }
+};
+
+const saveFavoritesToLocalStorage = () => {
+  const favoriteIds = favoriteMovies.value
+    .filter((movie) => movie.isFavorite)
+    .map((movie) => movie.id);
+  localStorage.setItem("favoriteMovies", JSON.stringify(favoriteIds));
+};
+
+const loadFavoritesFromLocalStorage = () => {
+  const favoriteIds = JSON.parse(localStorage.getItem("favoriteMovies")) || [];
+  favoriteMovies.value.forEach((movie) => {
+    if (favoriteIds.includes(movie.id)) {
+      movie.isFavorite = true;
+    }
+  });
 };
 
 onMounted(async () => {
@@ -74,6 +109,7 @@ onMounted(async () => {
       isFavorite: false,
       poster_path: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
     }));
+    loadFavoritesFromLocalStorage();
   } catch (error) {
     console.error("API request error:", error);
   }
