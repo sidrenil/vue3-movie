@@ -4,14 +4,14 @@
       to="/"
       class="nav-link"
       :class="{ 'active-link': $route.path === '/' }"
-      >| Ana Sayfa |
+      >| Home Page |
     </router-link>
     <router-link
       to="/favorites"
       class="nav-link"
       :class="{ 'active-link': $route.path === '/favorites' }"
     >
-      | Favoriler |</router-link
+      | Favories |</router-link
     >
   </nav>
 </template>

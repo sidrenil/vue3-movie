@@ -1,12 +1,12 @@
 <template>
   <div>
-    <h1>Ana Sayfa</h1>
-    <div class="mb-4">
+    <h1>Home Page</h1>
+    <div class="pt-4 mb-8 relative">
       <input
         v-model="searchQuery"
         type="text"
-        placeholder="Film ismi ara"
-        class="p-2 border border-gray-300 rounded-lg w-full"
+        placeholder="Search Movie Name"
+        class="p-2 border bg-white border-gray-300 rounded-lg w-full"
       />
     </div>
     <div

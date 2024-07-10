@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Favori Filmler</h1>
+    <h1>Favorite Movies</h1>
     <div
       class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4"
     >
