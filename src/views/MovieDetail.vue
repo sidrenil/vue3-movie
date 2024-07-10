@@ -1,18 +1,24 @@
 <template>
-  <div class="container mt-4">
-    <div class="">
+  <div class="mt-4 flex w-full justify-center items-center h-screen">
+    <div class="flex container w-full">
       <div class="col-md-6 order-md-2">
-        <img :src="movie.poster_path" alt="Movie Poster" class="img-fluid" />
+        <img
+          :src="movie.poster_path"
+          alt="Movie Poster"
+          class="img-fluid custom-img"
+        />
       </div>
-      <div class="col-md-6 order-md-1">
+      <div class="col-md-6 order-md-1 text-start ml-10">
         <div>
-          <h1 class="text-5xl text-yellow-500">{{ movie.title }}</h1>
-          <p class="lead text-yellow-200">{{ movie.overview }}</p>
+          <h1 class="text-5xl text-yellow-300 text-center">
+            {{ movie.title }}
+          </h1>
+          <p class="lead text-yellow-200 mt-10">{{ movie.overview }}</p>
           <div class="mt-4">
-            <p class="text-yellow-500">
+            <p class="text-yellow-500 mt-10 text-end">
               <strong>Release Date:</strong> {{ movie.release_date }}
             </p>
-            <p class="text-yellow-500">
+            <p class="text-yellow-500 text-end">
               <strong>Vote Average:</strong> {{ movie.vote_average }}
             </p>
           </div>
@@ -57,5 +63,9 @@ onMounted(async () => {
 <style scoped>
 .row {
   align-items: center;
+}
+.custom-img {
+  max-width: 500px;
+  height: auto;
 }
 </style>
