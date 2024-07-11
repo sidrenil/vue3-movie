@@ -32,6 +32,9 @@
       </div>
     </div>
   </div>
+  <footer class="pt-8 text-gray-400 text-sm text-center">
+    Developed by DENGE
+  </footer>
 </template>
 
 <script setup>

@@ -5,11 +5,17 @@
         v-model="searchQuery"
         type="text"
         placeholder="Search Movie Name"
-        class="p-2 border bg-slate-300 border-gray-300 rounded-lg w-full"
+        class="p-2 border bg-slate-300 border-gray-300 rounded-lg w-full max-w-md mx-auto"
       />
       <div
         class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mt-5"
       >
+        <div
+          v-if="filteredMovies.length === 0"
+          class="col-span-full text-center text-white"
+        >
+          Aradığınız Film Bulunamadı Lütfen Tekrar Deneyiniz
+        </div>
         <div
           v-for="movie in filteredMovies"
           :key="movie.id"
@@ -56,9 +62,11 @@
           </router-link>
         </div>
       </div>
-      <h5 class="pt-8 text-gray-400 text-sm">Developed by DENGE</h5>
     </div>
   </div>
+  <footer class="pt-8 text-gray-400 text-sm text-center pb-3">
+    Developed by DENGE
+  </footer>
 </template>
 
 <script setup>

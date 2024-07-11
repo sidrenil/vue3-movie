@@ -37,6 +37,11 @@
         </div>
       </div>
     </div>
+    <footer
+      class="fixed bottom-0 left-0 w-full pt-8 text-gray-400 text-sm text-center pb-3 bg-transparent"
+    >
+      Developed by DENGE
+    </footer>
   </div>
 </template>
 
