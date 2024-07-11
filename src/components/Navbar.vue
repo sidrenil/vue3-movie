@@ -1,5 +1,5 @@
 <template>
-  <nav>
+  <nav class="mt-3">
     <router-link
       to="/"
       class="nav-link"
@@ -11,7 +11,7 @@
       class="nav-link"
       :class="{ 'active-link': $route.path === '/favorites' }"
     >
-      | Favories |</router-link
+      | Favorites |</router-link
     >
   </nav>
 </template>

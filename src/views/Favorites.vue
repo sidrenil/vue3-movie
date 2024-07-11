@@ -1,28 +1,29 @@
 <template>
-  <div>
-    <h1>Favorite Movies</h1>
+  <div class="mt-10">
     <div
       class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4"
     >
       <div
         v-for="movie in favoriteMovies"
         :key="movie.id"
-        class="relative p-4 bg-white shadow-md rounded-lg"
+        class="relative p-4 bg-slate-300 shadow-md rounded-lg"
       >
         <router-link :to="{ name: 'MovieDetail', params: { id: movie.id } }">
           <img
             :src="movie.poster_path"
             alt="Movie Poster"
-            class="w-full h-48 object-cover mb-4 rounded-t-lg"
+            class="w-full h-48 object-cover mb-4 rounded-t-lg custom-img"
           />
         </router-link>
         <span class="absolute top-2 right-2">
           <font-awesome-icon
             :icon="['fas', 'heart']"
             :class="['cursor-pointer', { 'text-red-500': movie.isFavorite }]"
+            style="font-size: 30px"
             @click="toggleFavorite(movie)"
           />
         </span>
+
         <h2 class="text-lg font-semibold">{{ movie.title }}</h2>
         <p class="text-gray-600 line-clamp-3">{{ movie.overview }}</p>
         <div class="mt-2">
@@ -97,4 +98,8 @@ const loadFavoritesFromLocalStorage = async () => {
 onMounted(loadFavoritesFromLocalStorage);
 </script>
 
-<style scoped></style>
+<style scoped>
+.custom-img {
+  border-radius: 10px;
+}
+</style>

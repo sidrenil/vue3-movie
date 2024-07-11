@@ -1,12 +1,11 @@
 <template>
   <div>
-    <h1>Home Page</h1>
-    <div class="pt-4 mb-8 relative">
+    <div class="pt-4 mb-8 relative mr-3 ml-3">
       <input
         v-model="searchQuery"
         type="text"
         placeholder="Search Movie Name"
-        class="p-2 border bg-white border-gray-300 rounded-lg w-full"
+        class="p-2 border bg-slate-300 border-gray-300 rounded-lg w-full"
       />
       <div
         class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mt-5"
@@ -14,7 +13,7 @@
         <div
           v-for="movie in filteredMovies"
           :key="movie.id"
-          class="relative p-4 bg-white shadow-md rounded-lg"
+          class="relative p-4 bg-slate-300 shadow-md rounded-lg"
         >
           <router-link
             :to="{ name: 'MovieDetail', params: { id: movie.id } }"
@@ -32,6 +31,7 @@
                   'cursor-pointer',
                   { 'text-red-500': movie.isFavorite },
                 ]"
+                style="font-size: 30px"
                 @click.stop.prevent="toggleFavorite(movie)"
               />
             </span>
@@ -56,6 +56,7 @@
           </router-link>
         </div>
       </div>
+      <h5 class="pt-8 text-gray-400 text-sm">Developed by DENGE</h5>
     </div>
   </div>
 </template>
