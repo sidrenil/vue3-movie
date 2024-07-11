@@ -23,10 +23,9 @@
             @click="toggleFavorite(movie)"
           />
         </span>
-
         <h2 class="text-lg font-semibold">{{ movie.title }}</h2>
         <p class="text-gray-600 line-clamp-3">{{ movie.overview }}</p>
-        <div class="mt-2">
+        <div class="mt-auto">
           <span
             class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
             >{{ movie.release_date }}</span

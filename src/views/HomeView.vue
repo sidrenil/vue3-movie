@@ -22,7 +22,7 @@
             <img
               :src="movie.poster_path"
               alt="Movie Poster"
-              class="w-full h-48 object-cover mb-4 rounded-t-lg custom-img"
+              class="w-full h-48 object-fill mb-4 rounded-t-lg custom-img"
             />
             <span class="absolute top-2 right-2">
               <font-awesome-icon
@@ -132,5 +132,6 @@ onMounted(async () => {
 <style scoped>
 .custom-img {
   border-radius: 10px;
+  image-rendering: auto;
 }
 </style>
