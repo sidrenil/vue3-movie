@@ -64,7 +64,7 @@
       </div>
     </div>
   </div>
-  <footer class="pt-8 text-gray-400 text-sm text-center pb-3">
+  <footer class="text-gray-400 text-sm text-center pb-3">
     Developed by DENGE
   </footer>
 </template>
