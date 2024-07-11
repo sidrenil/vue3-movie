@@ -70,5 +70,6 @@ onMounted(async () => {
 .custom-img {
   max-width: 500px;
   height: auto;
+  border-radius: 20px;
 }
 </style>

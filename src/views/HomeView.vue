@@ -8,41 +8,53 @@
         placeholder="Search Movie Name"
         class="p-2 border bg-white border-gray-300 rounded-lg w-full"
       />
-    </div>
-    <div
-      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4"
-    >
       <div
-        v-for="movie in filteredMovies"
-        :key="movie.id"
-        class="relative p-4 bg-white shadow-md rounded-lg"
+        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mt-5"
       >
-        <router-link :to="{ name: 'MovieDetail', params: { id: movie.id } }">
-          <img
-            :src="movie.poster_path"
-            alt="Movie Poster"
-            class="w-full h-48 object-cover mb-4 rounded-t-lg"
-          />
-          <span class="absolute top-2 right-2">
-            <font-awesome-icon
-              :icon="['fas', movie.isFavorite ? 'heart' : 'heart']"
-              :class="['cursor-pointer', { 'text-red-500': movie.isFavorite }]"
-              @click.stop.prevent="toggleFavorite(movie)"
+        <div
+          v-for="movie in filteredMovies"
+          :key="movie.id"
+          class="relative p-4 bg-white shadow-md rounded-lg"
+        >
+          <router-link
+            :to="{ name: 'MovieDetail', params: { id: movie.id } }"
+            class="flex flex-col h-full"
+          >
+            <img
+              :src="movie.poster_path"
+              alt="Movie Poster"
+              class="w-full h-48 object-cover mb-4 rounded-t-lg custom-img"
             />
-          </span>
-          <h2 class="text-lg font-semibold">{{ movie.title }}</h2>
-          <p class="text-gray-600 line-clamp-3">{{ movie.overview }}</p>
-          <div class="mt-2">
-            <span
-              class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
-              >{{ movie.release_date }}</span
-            >
-            <span
-              class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700"
-              >{{ movie.vote_average }}</span
-            >
-          </div>
-        </router-link>
+            <span class="absolute top-2 right-2">
+              <font-awesome-icon
+                :icon="['fas', movie.isFavorite ? 'heart' : 'heart']"
+                :class="[
+                  'cursor-pointer',
+                  { 'text-red-500': movie.isFavorite },
+                ]"
+                @click.stop.prevent="toggleFavorite(movie)"
+              />
+            </span>
+            <div class="flex-1 flex flex-col justify-between">
+              <div>
+                <h2 class="text-lg font-semibold">{{ movie.title }}</h2>
+                <p class="text-gray-600 line-clamp-3">{{ movie.overview }}</p>
+              </div>
+              <div class="mt-auto">
+                <span
+                  class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
+                >
+                  {{ movie.release_date }}
+                </span>
+                <span
+                  class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700"
+                >
+                  {{ movie.vote_average }}
+                </span>
+              </div>
+            </div>
+          </router-link>
+        </div>
       </div>
     </div>
   </div>
@@ -116,4 +128,8 @@ onMounted(async () => {
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+.custom-img {
+  border-radius: 10px;
+}
+</style>
