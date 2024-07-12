@@ -72,6 +72,7 @@
 <script setup>
 import { ref, computed, onMounted } from "vue";
 import axios from "axios";
+import { getPopularMovies } from "@/api/movies";
 
 const favoriteMovies = ref([]);
 const searchQuery = ref("");
@@ -113,23 +114,7 @@ const loadFavoritesFromLocalStorage = () => {
 
 onMounted(async () => {
   try {
-    const response = await axios.get(
-      "https://api.themoviedb.org/3/movie/popular",
-      {
-        params: {
-          api_key: "0d0deb580941abbdf883bcab9be78da5",
-        },
-      }
-    );
-    favoriteMovies.value = response.data.results.map((movie) => ({
-      id: movie.id,
-      title: movie.title,
-      overview: movie.overview,
-      release_date: movie.release_date,
-      vote_average: movie.vote_average,
-      isFavorite: false,
-      poster_path: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
-    }));
+    favoriteMovies.value = await getPopularMovies();
     loadFavoritesFromLocalStorage();
   } catch (error) {
     console.error("API request error:", error);

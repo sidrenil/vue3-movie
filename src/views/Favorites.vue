@@ -38,7 +38,7 @@
       </div>
     </div>
     <footer
-      class="fixed bottom-0 left-0 w-full pt-8 text-gray-400 text-sm text-center pb-3 bg-transparent"
+      class="bottom-0 left-0 w-full pt-8 text-gray-400 text-sm text-center pb-3 bg-transparent"
     >
       Developed by DENGE
     </footer>
@@ -48,6 +48,7 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import axios from "axios";
+import { getMovieById } from "@/api/movies";
 
 const favoriteMovies = ref([]);
 
@@ -74,23 +75,10 @@ const loadFavoritesFromLocalStorage = async () => {
   if (favoriteIds.length > 0) {
     try {
       const responses = await Promise.all(
-        favoriteIds.map((id) =>
-          axios.get(`https://api.themoviedb.org/3/movie/${id}`, {
-            params: {
-              api_key: "0d0deb580941abbdf883bcab9be78da5",
-            },
-          })
-        )
+        favoriteIds.map((id) => getMovieById(id))
       );
-      favoriteMovies.value = responses.map((response) => ({
-        id: response.data.id,
-        title: response.data.title,
-        overview: response.data.overview,
-        release_date: response.data.release_date,
-        vote_average: response.data.vote_average,
-        isFavorite: true,
-        poster_path: `https://image.tmdb.org/t/p/w500${response.data.poster_path}`,
-      }));
+
+      favoriteMovies.value = responses;
     } catch (error) {
       console.error("API request error:", error);
     }

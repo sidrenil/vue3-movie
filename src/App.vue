@@ -1,5 +1,8 @@
 <template>
-  <div id="app" class="text-center text-blue-800 max-w-800 mx-auto">
+  <div
+    id="app"
+    class="text-center text-blue-800 max-w-800 mx-auto min-h-screen"
+  >
     <Navbar />
     <router-view />
   </div>
