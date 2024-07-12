@@ -1,12 +1,12 @@
 <template>
   <div class="pt-6 mb-8 relative mr-3 ml-3 min-h-screen">
     <div
-      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4"
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4"
     >
       <div
         v-for="movie in favoriteMovies"
         :key="movie.id"
-        class="relative p-4 bg-slate-300 shadow-md rounded-lg"
+        class="relative p-4 bg-slate-300 shadow-md rounded-lg flex flex-col justify-between"
       >
         <router-link :to="{ name: 'MovieDetail', params: { id: movie.id } }">
           <img
@@ -25,7 +25,7 @@
         </span>
         <h2 class="text-lg font-semibold">{{ movie.title }}</h2>
         <p class="text-gray-600 line-clamp-3">{{ movie.overview }}</p>
-        <div class="mt-auto">
+        <div class="mt-auto flex justify-center">
           <span
             class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
             >{{ movie.release_date }}</span

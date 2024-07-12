@@ -8,7 +8,7 @@
         class="p-2 border bg-slate-300 border-gray-300 rounded-lg w-full max-w-md mx-auto"
       />
       <div
-        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mt-5"
+        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-4 mt-5"
       >
         <div
           v-if="filteredMovies.length === 0"
@@ -69,6 +69,7 @@
 <script setup>
 import { ref, computed, onMounted } from "vue";
 import { getPopularMovies } from "@/api/movies";
+
 const favoriteMovies = ref([]);
 const searchQuery = ref("");
 
