@@ -1,6 +1,6 @@
 <template>
   <div class="flex items-center justify-center mt-10">
-    <div class="flex container">
+    <div class="flex container m-10">
       <div
         class="col-md-6 order-md-2 d-flex align-items-center justify-content-center"
       >
