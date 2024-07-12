@@ -64,16 +64,11 @@
       </div>
     </div>
   </div>
-  <footer class="text-gray-400 text-sm text-center pb-3">
-    Developed by DENGE
-  </footer>
 </template>
 
 <script setup>
 import { ref, computed, onMounted } from "vue";
-import axios from "axios";
 import { getPopularMovies } from "@/api/movies";
-
 const favoriteMovies = ref([]);
 const searchQuery = ref("");
 

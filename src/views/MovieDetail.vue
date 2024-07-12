@@ -32,37 +32,20 @@
       </div>
     </div>
   </div>
-  <footer class="pt-8 text-gray-400 text-sm text-center">
-    Developed by DENGE
-  </footer>
 </template>
 
 <script setup>
 import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
-import axios from "axios";
+import { getMovieDetails } from "../api/movies";
 
 const route = useRoute();
 const movie = ref({});
 
 onMounted(async () => {
   try {
-    const response = await axios.get(
-      `https://api.themoviedb.org/3/movie/${route.params.id}`,
-      {
-        params: {
-          api_key: "0d0deb580941abbdf883bcab9be78da5",
-        },
-      }
-    );
-    movie.value = {
-      id: response.data.id,
-      title: response.data.title,
-      overview: response.data.overview,
-      release_date: response.data.release_date,
-      vote_average: response.data.vote_average,
-      poster_path: `https://image.tmdb.org/t/p/w500${response.data.poster_path}`,
-    };
+    const movieId = route.params.id;
+    movie.value = await getMovieDetails(movieId);
   } catch (error) {
     console.error("API request error:", error);
   }

@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-10">
+  <div class="pt-6 mb-8 relative mr-3 ml-3 min-h-screen">
     <div
       class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4"
     >
@@ -37,17 +37,11 @@
         </div>
       </div>
     </div>
-    <footer
-      class="bottom-0 left-0 w-full pt-8 text-gray-400 text-sm text-center pb-3 bg-transparent"
-    >
-      Developed by DENGE
-    </footer>
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted } from "vue";
-import axios from "axios";
 import { getMovieById } from "@/api/movies";
 
 const favoriteMovies = ref([]);

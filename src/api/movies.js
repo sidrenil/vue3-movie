@@ -46,3 +46,25 @@ export const getMovieById = async (id) => {
     throw error;
   }
 };
+
+export const getMovieDetails = async (id) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/movie/${id}`, {
+      params: {
+        api_key: API_KEY,
+      },
+    });
+    return {
+      id: response.data.id,
+      title: response.data.title,
+      overview: response.data.overview,
+      release_date: response.data.release_date,
+      vote_average: response.data.vote_average,
+      poster_path: `https://image.tmdb.org/t/p/w500${response.data.poster_path}`,
+      isFavorite: true,
+    };
+  } catch (error) {
+    console.error("API request error:", error);
+    throw error;
+  }
+};
