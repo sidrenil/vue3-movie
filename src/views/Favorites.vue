@@ -1,7 +1,7 @@
 <template>
   <div class="mt-10">
     <div
-      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4"
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4"
     >
       <div
         v-for="movie in favoriteMovies"
@@ -12,7 +12,7 @@
           <img
             :src="movie.poster_path"
             alt="Movie Poster"
-            class="w-full h-48 object-cover mb-4 rounded-t-lg custom-img"
+            class="w-full h-48 o0,bject-cover mb-4 rounded-t-lg custom-img"
           />
         </router-link>
         <span class="absolute top-2 right-2">
