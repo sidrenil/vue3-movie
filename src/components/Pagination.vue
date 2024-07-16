@@ -40,12 +40,14 @@ const emits = defineEmits(["updatePage"]);
 const nextPage = () => {
   if (props.currentPage < props.totalPages) {
     emits("updatePage", props.currentPage + 1);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 };
 
 const prevPage = () => {
   if (props.currentPage > 1) {
     emits("updatePage", props.currentPage - 1);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 };
 
@@ -96,8 +98,8 @@ const pagesToShow = computed(() => {
 }
 
 .page-btn.active {
-  background-color: #4f7cac;
+  background-color: #ca7474;
   color: white;
-  border-color: #395d82;
+  border-color: #ca7474;
 }
 </style>
