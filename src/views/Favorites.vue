@@ -4,7 +4,13 @@
       class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4"
     >
       <div
-        v-for="movie in favoriteMovies"
+        v-if="paginatedFavorites.length === 0"
+        class="col-span-full text-center text-white"
+      >
+        Favori filminiz bulunmamaktadır.
+      </div>
+      <div
+        v-for="movie in paginatedFavorites"
         :key="movie.id"
         class="relative p-4 bg-slate-300 shadow-md rounded-lg flex flex-col justify-between"
       >
@@ -12,7 +18,7 @@
           <img
             :src="movie.poster_path"
             alt="Movie Poster"
-            class="w-full h-48 o0,bject-cover mb-4 rounded-t-lg custom-img"
+            class="w-full h-48 object-cover mb-4 rounded-t-lg custom-img"
           />
         </router-link>
         <span class="absolute top-2 right-2">
@@ -37,14 +43,36 @@
         </div>
       </div>
     </div>
+    <Pagination
+      :current-page="currentPage"
+      :total-pages="totalPages"
+      @updatePage="updatePage"
+    />
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, computed, onMounted } from "vue";
 import { getMovieById } from "@/api/movies";
+import Pagination from "@/components/Pagination.vue";
 
 const favoriteMovies = ref([]);
+const currentPage = ref(1);
+const itemsPerPage = ref(12); // Sayfa başına gösterilecek film sayısı
+
+const paginatedFavorites = computed(() => {
+  const start = (currentPage.value - 1) * itemsPerPage.value;
+  const end = start + itemsPerPage.value;
+  return favoriteMovies.value.slice(start, end);
+});
+
+const totalPages = computed(() => {
+  return Math.ceil(favoriteMovies.value.length / itemsPerPage.value);
+});
+
+const updatePage = (page) => {
+  currentPage.value = page;
+};
 
 const toggleFavorite = (movie) => {
   movie.isFavorite = !movie.isFavorite;
