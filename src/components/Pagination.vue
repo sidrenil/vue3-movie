@@ -51,6 +51,7 @@ const prevPage = () => {
 
 const updatePage = (page) => {
   emits("updatePage", page);
+  window.scrollTo({ top: 0, behavior: "smooth" });
 };
 
 const pagesToShow = computed(() => {
@@ -95,8 +96,8 @@ const pagesToShow = computed(() => {
 }
 
 .page-btn.active {
-  background-color: #007bff;
+  background-color: #4f7cac;
   color: white;
-  border-color: #007bff;
+  border-color: #395d82;
 }
 </style>
