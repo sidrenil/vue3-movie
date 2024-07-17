@@ -10,13 +10,13 @@
     <div class="flex-grow text-center">
       <router-link
         to="/"
-        class="nav-link text-gray-500 no-underline p-10 transition-color duration-300"
+        class="nav-link text-gray-500 no-underline p-2 transition-color duration-300"
         :class="{ 'active-link': $route.path === '/' }"
         >| Home Page |
       </router-link>
       <router-link
         to="/favorites"
-        class="nav-link"
+        class="nav-link text-gray-500 no-underline p-2 transition-color duration-300"
         :class="{ 'active-link': $route.path === '/favorites' }"
       >
         | Favorites |
