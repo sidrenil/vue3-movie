@@ -43,7 +43,6 @@ import { getMovieDetails } from "../api/movies";
 
 const route = useRoute();
 const router = useRouter();
-
 const movie = ref({});
 
 onMounted(async () => {

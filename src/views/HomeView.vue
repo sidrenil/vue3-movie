@@ -79,7 +79,7 @@ import Pagination from "@/components/Pagination.vue";
 const favoriteMovies = ref([]);
 const searchQuery = ref("");
 const currentPage = ref(1);
-const itemsPerPage = ref(12); // Sayfa başına gösterilecek film sayısı
+const itemsPerPage = ref(12);
 
 const filteredMovies = computed(() => {
   if (!searchQuery.value) {

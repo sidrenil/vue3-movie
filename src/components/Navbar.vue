@@ -1,6 +1,7 @@
 <template>
   <nav class="mt-3 flex items-center justify-between px-4">
     <button
+      v-if="showBackButton"
       @click="goBack"
       class="bg-gray-500 text-white py-2 px-4 rounded-full"
     >
@@ -9,7 +10,7 @@
     <div class="flex-grow text-center">
       <router-link
         to="/"
-        class="nav-link"
+        class="nav-link text-gray-500 no-underline p-10 transition-color duration-300"
         :class="{ 'active-link': $route.path === '/' }"
         >| Home Page |
       </router-link>
@@ -25,12 +26,20 @@
 </template>
 
 <script setup>
-import { useRouter } from "vue-router";
+import { computed } from "vue";
+import { useRouter, useRoute } from "vue-router";
+
 const router = useRouter();
+const route = useRoute();
 
 const goBack = () => {
   router.back();
 };
+
+const showBackButton = computed(() => {
+  const hiddenRoutes = ["/"];
+  return !hiddenRoutes.includes(route.path);
+});
 </script>
 
 <style scoped>
@@ -42,13 +51,6 @@ body {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-.nav-link {
-  color: gray;
-  text-decoration: none;
-  padding: 10px;
-  transition: color 0.3s;
 }
 
 .nav-link:hover {
