@@ -1,22 +1,37 @@
 <template>
-  <nav class="mt-3">
-    <router-link
-      to="/"
-      class="nav-link"
-      :class="{ 'active-link': $route.path === '/' }"
-      >| Home Page |
-    </router-link>
-    <router-link
-      to="/favorites"
-      class="nav-link"
-      :class="{ 'active-link': $route.path === '/favorites' }"
+  <nav class="mt-3 flex items-center justify-between px-4">
+    <button
+      @click="goBack"
+      class="bg-gray-500 text-white py-2 px-4 rounded-full"
     >
-      | Favorites |</router-link
-    >
+      <font-awesome-icon :icon="['fas', 'arrow-left']" />
+    </button>
+    <div class="flex-grow text-center">
+      <router-link
+        to="/"
+        class="nav-link"
+        :class="{ 'active-link': $route.path === '/' }"
+        >| Home Page |
+      </router-link>
+      <router-link
+        to="/favorites"
+        class="nav-link"
+        :class="{ 'active-link': $route.path === '/favorites' }"
+      >
+        | Favorites |
+      </router-link>
+    </div>
   </nav>
 </template>
 
-<script setup></script>
+<script setup>
+import { useRouter } from "vue-router";
+const router = useRouter();
+
+const goBack = () => {
+  router.back();
+};
+</script>
 
 <style scoped>
 body {
