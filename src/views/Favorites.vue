@@ -43,12 +43,13 @@
         </div>
       </div>
     </div>
-    <Pagination
-      :current-page="currentPage"
-      :total-pages="totalPages"
-      @updatePage="updatePage"
-    />
   </div>
+  <Pagination
+    :current-page="currentPage"
+    :total-pages="totalPages"
+    @updatePage="updatePage"
+    class="pb-8"
+  />
 </template>
 
 <script setup>
@@ -58,8 +59,7 @@ import Pagination from "@/components/Pagination.vue";
 
 const favoriteMovies = ref([]);
 const currentPage = ref(1);
-const itemsPerPage = ref(12); // Sayfa başına gösterilecek film sayısı
-
+const itemsPerPage = ref(12);
 const paginatedFavorites = computed(() => {
   const start = (currentPage.value - 1) * itemsPerPage.value;
   const end = start + itemsPerPage.value;
@@ -72,6 +72,7 @@ const totalPages = computed(() => {
 
 const updatePage = (page) => {
   currentPage.value = page;
+  window.scrollTo({ top: 0, behavior: "smooth" });
 };
 
 const toggleFavorite = (movie) => {
