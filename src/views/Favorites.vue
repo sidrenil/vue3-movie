@@ -1,7 +1,7 @@
 <template>
   <div class="pt-6 mb-8 relative mr-3 ml-3 min-h-screen">
     <div
-      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4"
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 mt-5"
     >
       <div
         v-if="paginatedFavorites.length === 0"
@@ -18,7 +18,7 @@
           <img
             :src="movie.poster_path"
             alt="Movie Poster"
-            class="w-full h-48 object-cover mb-4 rounded-t-lg custom-img"
+            class="w-full h-48 object-fill mb-4 rounded-t-lg custom-img"
           />
         </router-link>
         <span class="absolute top-2 right-2">
@@ -116,5 +116,6 @@ onMounted(loadFavoritesFromLocalStorage);
 <style scoped>
 .custom-img {
   border-radius: 10px;
+  image-rendering: auto;
 }
 </style>

@@ -58,7 +58,8 @@ onMounted(async () => {
 <style scoped>
 .custom-img {
   max-width: 500px;
-  height: auto;
+  max-height: 75vh;
+
   border-radius: 20px;
 }
 </style>
